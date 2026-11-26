@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TikFinity Connection Test</title>
+    <style>
+        body {
+            background: transparent;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        #status {
+            font-size: 32px;
+            font-weight: bold;
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>TikFinity Connection Test</h2>
+    <div id="status">Connecting...</div>
+    <p id="event">Waiting for events...</p>
+
+    <script>
+        const status = document.getElementById("status");
+        const eventText = document.getElementById("event");
+
+        function connect() {
+            const socket = new WebSocket(
+                "ws://localhost:21213/"
+            );
+
+            socket.onopen = () => {
+                status.textContent = "Connected";
+                status.style.color = "lime";
+            };
+
+            socket.onmessage = (message) => {
+                const data = JSON.parse(message.data);
+                console.log(data);
+                eventText.textContent = "Event: " + data.event;
+            };
+
+            socket.onerror = () => {
+                status.textContent = "Connection Error";
+                status.style.color = "red";
+            };
+
+            socket.onclose = () => {
+                status.textContent = "Disconnected";
+                status.style.color = "red";
+                setTimeout(connect, 3000);
+            };
+        }
+
+        connect();
+    </script>
+
+</body>
+</html>
