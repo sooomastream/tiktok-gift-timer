@@ -18,11 +18,11 @@ body {
 
 #timer {
     font-family: "Lobster", cursive;
-    font-size: 80px;
+    font-size: 100px;
     font-weight: 400;
     color: #000000;
 
-    -webkit-text-stroke: 2.5px #fff839;
+    -webkit-text-stroke: 3px #fff839;
     paint-order: stroke fill;
 
     line-height: 1;
