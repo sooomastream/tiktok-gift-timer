@@ -5,7 +5,7 @@
 
 const SECONDS_PER_COIN = 60;
 const WEBSOCKET_URL = "ws://localhost:21213/";
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 // ========================================
 // Timer
